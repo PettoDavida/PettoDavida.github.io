@@ -1,4 +1,32 @@
-const forest = 'F';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: script.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: script.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const forest = 'F';
 const path = 'P';
 const pathCrossing = 'Pc';
 const pathDeadEnd = 'PdE';
@@ -30,7 +58,7 @@ let talkToBlacksmith = false;
  * @type {object} 
  * @description This holds the properties of Neo the Ogre
  * @property {int} ogre.hp The ogres health
- * @property {boolean} ogre.dead If the ogre is over 0 health this is supposed to be false so the game knows the ogre lives
+ * @property {boolean} ogre.dead If the ogre i over 0 health this is supposed to be false so the game knows the ogre lives
  */
 let ogre = {
     hp: 100,
@@ -61,7 +89,7 @@ function action() {
     let action = document.querySelector("#input").value;
 
     if (action == "move north" || action == "go north") {
-        if (y <= 0) {
+        if (y &lt;= 0) {
             return;
         } else {
             y--
@@ -78,7 +106,7 @@ function action() {
         if (x >= 8) {
             return;
         }
-        if (x + 1 == 2 && y == 4 || y == 5) {
+        if (x + 1 == 2 &amp;&amp; y == 4 || y == 5) {
             story.innerHTML = "The villages walls hinder you from going that way. You will need to find another way out. ";
             override = true;
         } else {
@@ -86,10 +114,10 @@ function action() {
         }
     }
     if (action == "move west" || action == "go west") {
-        if (x <= 0) {
+        if (x &lt;= 0) {
             return;
         }
-        if (x - 1 == 1 && y == 4 || y == 5) {
+        if (x - 1 == 1 &amp;&amp; y == 4 || y == 5) {
             story.innerHTML = "The villages walls hinder you from going that way. You will need to find another way in. ";
             override = true;
         } else {
@@ -97,11 +125,11 @@ function action() {
         }
     }
     if (action == "hint") {
-        if (y == 5 && x == 1) {
+        if (y == 5 &amp;&amp; x == 1) {
             alert("To move write move north, south, east or west. \nTo pick up an item write pickup (itemname)");
             return;
         }
-        if (y == 3 && x == 8) {
+        if (y == 3 &amp;&amp; x == 8) {
             alert("To move write move north, south, east or west. \nTo hit Neo the Ogre write hit ogre with (weaponname) or just hit ogre");
             return;
         } else {
@@ -109,7 +137,7 @@ function action() {
         }
     }
     if (action == "pickup sword") {
-        if (y == 5 && x == 1) {
+        if (y == 5 &amp;&amp; x == 1) {
             sword = true;
             pickupItem("sword");
         } else {
@@ -117,7 +145,7 @@ function action() {
         }
     }
     if (action == "pickup axe") {
-        if (y == 5 && x == 1) {
+        if (y == 5 &amp;&amp; x == 1) {
             axe = true;
             pickupItem("axe");
         } else {
@@ -125,14 +153,14 @@ function action() {
         }
     }
     if (action == "hit ogre") {
-        if (y == 3 && x == 8) {
+        if (y == 3 &amp;&amp; x == 8) {
             let weapon = prompt("with what?")
-            if (weapon.includes("sword") && sword == true) {
+            if (weapon.includes("sword") &amp;&amp; sword == true) {
                 hitOgre(15);
                 override = true;
                 return;
             }
-            if (weapon.includes("axe") && axe == true) {
+            if (weapon.includes("axe") &amp;&amp; axe == true) {
                 hitOgre(25);
                 override = true;
                 return;
@@ -142,22 +170,22 @@ function action() {
         }
 
     }
-    if (action == "hit ogre with sword" && sword == true) {
-        if (y == 3 && x == 8) {
+    if (action == "hit ogre with sword" &amp;&amp; sword == true) {
+        if (y == 3 &amp;&amp; x == 8) {
             hitOgre(15)
             override = true;
         }
 
     }
-    if (action == "hit ogre with axe" && axe == true) {
-        if (y == 3 && x == 8) {
+    if (action == "hit ogre with axe" &amp;&amp; axe == true) {
+        if (y == 3 &amp;&amp; x == 8) {
             hitOgre(25)
             override = true;
         }
 
     }
     if (action == "pickup key") {
-        if (y == 3 && x == 8 && ogre.dead) {
+        if (y == 3 &amp;&amp; x == 8 &amp;&amp; ogre.dead) {
             gateKey = true;
             pickupItem("key");
         } else {
@@ -175,8 +203,8 @@ function action() {
 function hitOgre(value) {
     ogre.hp -= value;
     if (!ogre.dead) {
-        if (ogre.hp <= 0) {
-            story.innerHTML = ("The ogre has died.<br> You see a key hanging from the dead ogres belt.")
+        if (ogre.hp &lt;= 0) {
+            story.innerHTML = ("The ogre has died.&lt;br> You see a key hanging from the dead ogres belt.")
             ogre.dead = true;
         } else {
             story.innerHTML = ("The ogre has " + ogre.hp.toString() + "HP left")
@@ -263,9 +291,9 @@ function blacksmith() {
         }
     } else {
         if (talkToBlacksmith) {
-            story.innerHTML = "I heard you talked to the chief and he told me to get out my best weapons so that you could help slay Neo the Ogre.<br> What weapon would you like?<br> *on the table you find a pristine looking sword and a battle hardened battle-axe*";
+            story.innerHTML = "I heard you talked to the chief and he told me to get out my best weapons so that you could help slay Neo the Ogre.&lt;br> What weapon would you like?&lt;br> *on the table you find a pristine looking sword and a battle hardened battle-axe*";
         } else {
-            story.innerHTML = "Stranger! I've been expecting you.<br> The chief told me to get out my best weapons so that you could help slay Neo the Ogre.<br> What weapon would you like?<br> *on the table you find a pristine looking sword and a battle hardened battle-axe*";
+            story.innerHTML = "Stranger! I've been expecting you.&lt;br> The chief told me to get out my best weapons so that you could help slay Neo the Ogre.&lt;br> What weapon would you like?&lt;br> *on the table you find a pristine looking sword and a battle hardened battle-axe*";
         }
     }
 
@@ -287,7 +315,7 @@ function chief() {
         if (talkToBlacksmith) {
             story.innerHTML = "Hello, I've been waiting the blacksmith told me to expect a stranger to come by. ";
         } else {
-            story.innerHTML = "Welcome to our village stranger. As you may have seen our village has been abandoned. <br> This is because of Neo the Ogre that lives in the swamp to the west. If you would be willing to help I will have a message delivered to the blacksmith telling him to expect you.<br> He should be able to give you some sort of weapon.";
+            story.innerHTML = "Welcome to our village stranger. As you may have seen our village has been abandoned. &lt;br> This is because of Neo the Ogre that lives in the swamp to the west. If you would be willing to help I will have a message delivered to the blacksmith telling him to expect you.&lt;br> He should be able to give you some sort of weapon.";
         }
     }
     talkToChief = true;
@@ -298,7 +326,7 @@ function chief() {
  */
 function getWeapon() {
 
-    if (sword && axe) {
+    if (sword &amp;&amp; axe) {
         return "sword and axe";
     }
     if (sword) {
@@ -346,4 +374,26 @@ function wallGate() {
  */
 function pickupItem(item) {
     document.querySelector("#" + item).innerHTML = item.toString();
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#action">action</a></li><li><a href="global.html#blacksmith">blacksmith</a></li><li><a href="global.html#checkSquare">checkSquare</a></li><li><a href="global.html#chief">chief</a></li><li><a href="global.html#getWeapon">getWeapon</a></li><li><a href="global.html#hitOgre">hitOgre</a></li><li><a href="global.html#neoTheOgre">neoTheOgre</a></li><li><a href="global.html#ogre">ogre</a></li><li><a href="global.html#pickupItem">pickupItem</a></li><li><a href="global.html#wallGate">wallGate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Nov 18 2021 18:07:58 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
